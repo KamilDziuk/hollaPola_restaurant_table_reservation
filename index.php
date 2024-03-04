@@ -509,7 +509,42 @@ reservationTimes.forEach((reservationTime, y) => {
     reservationTime.style.color = "green";
     let reservationTimesRes = reservations.filter(reservations =>  reservations.status == 'Zajety' && reservations.tableId == 1 &&
 reservations.reservationDate == 1);
+let reservationTimesResOne = reservations.filter(reservations =>  reservations.status == 'Zajety' && reservations.tableId == 1 &&
+reservations.reservationDate == 2);
 
+if(reservationTimesResOne.length > 0)
+{
+ 
+  reservationTimesResOne.forEach(reservationTimesResOne =>
+  {
+    let reservationTimesResOneAll = JSON.stringify(reservationTimesResOne.reservationTime);
+   
+    if(reservationTimesResOneAll.slice(1, 5) == reservationTime.textContent && reservationResultData.textContent == 2 && reservationResultId.textContent == 1 )
+    {
+  
+      reservationTime.style.color = "red";
+    }
+
+ 
+  
+
+    else if(reservationTimesResOneAll.slice(1, 6) == reservationTime.textContent && reservationResultData.textContent == 2 && reservationResultId.textContent == 1)
+    {
+      reservationTime.style.color = "red";
+    }
+  });
+  
+}
+
+
+if(reservationResultData.textContent == 1 ||reservationResultData.textContent == 2){
+document.querySelector('.containerMain').style.display = 'block';
+}
+
+else
+{
+  sentSuccessfully.innerHTML = "Wybierz date";
+}
 if(reservationTimesRes.length > 0)
 {
  
