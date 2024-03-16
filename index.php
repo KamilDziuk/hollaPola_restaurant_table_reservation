@@ -1,4 +1,3 @@
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -121,10 +120,9 @@
 <div class="reservationResultData"></div>
 <div class="reservationResultHours"></div>
 <div class="reservationResultId"></div>
-
-
 <button class="submit" required>Zarezerwuj</button>
 <div class="sentSuccessfully"></div>
+
 
 </form>
 </div>
@@ -230,45 +228,45 @@
     <table class="table">
       <tbody id="reservationTable">
         <tr>
-          <td class="tableId">1</td>
-          <td class="tableId">2</td>
-          <td class="tableId">3</td>
-          <td class="tableId">4</td>
+          <td class="hoursId">1</td>
+          <td class="hoursId">2</td>
+          <td class="hoursId">3</td>
+          <td class="hoursId">4</td>
         </tr>
         <tr>
-          <td class="tableId">5</td>
-          <td class="tableId">6</td>
-          <td class="tableId">7</td>
-          <td class="tableId">8</td>
-          <td class="tableId">9</td>
-          <td  class="tableId">10</td>
-          <td  class="tableId">11</td>
+          <td class="hoursId">5</td>
+          <td class="hoursId">6</td>
+          <td class="hoursId">7</td>
+          <td class="hoursId">8</td>
+          <td class="hoursId">9</td>
+          <td  class="hoursId">10</td>
+          <td  class="hoursId">11</td>
         </tr>
         <tr>
-          <td  class="tableId">12</td>
-          <td  class="tableId">13</td>
-          <td  class="tableId">14</td>
-          <td  class="tableId">15</td>
-          <td  class="tableId">16</td>
-          <td  class="tableId">17</td>
-          <td  class="tableId">18</td>
+          <td  class="hoursId">12</td>
+          <td  class="hoursId">13</td>
+          <td  class="hoursId">14</td>
+          <td  class="hoursId">15</td>
+          <td  class="hoursId">16</td>
+          <td  class="hoursId">17</td>
+          <td  class="hoursId">18</td>
         </tr>
         <tr>
-          <td  class="tableId">19</td>
-          <td  class="tableId">20</td>
-          <td  class="tableId">21</td>
-          <td  class="tableId">22</td>
-          <td  class="tableId">23</td>
-          <td  class="tableId">24</td>
-          <td  class="tableId">25</td>
+          <td  class="hoursId">19</td>
+          <td  class="hoursId">20</td>
+          <td  class="hoursId">21</td>
+          <td  class="hoursId">22</td>
+          <td  class="hoursId">23</td>
+          <td  class="hoursId">24</td>
+          <td  class="hoursId">25</td>
         </tr>
         <tr>
-          <td  class="tableId">26</td>
-          <td  class="tableId">27</td>
-          <td  class="tableId">28</td>
-          <td  class="tableId">29</td>
-          <td  class="tableId">30</td>
-          <td  class="tableId">31</td>
+          <td  class="hoursId">26</td>
+          <td  class="hoursId">27</td>
+          <td  class="hoursId">28</td>
+          <td  class="hoursId">29</td>
+          <td  class="hoursId">30</td>
+          <td  class="hoursId">31</td>
         </tr>
       
       </tbody>
@@ -372,7 +370,7 @@ let reservationDate = reservationDateActive.getElementsByClassName('reservationD
 
 
 let reservationTable = document.getElementById('reservationTable');
-let tableId = reservationTable.getElementsByClassName('tableId');
+let hoursId = reservationTable.getElementsByClassName('hoursId');
 
 
 
@@ -384,19 +382,18 @@ let reservationTime = reservationHours.getElementsByClassName('reservationTime')
 let reservationResultHours = document.querySelector('.reservationResultHours');
 let reservationResultData = document.querySelector('.reservationResultData');
 let reservationResultId = document.querySelector('.reservationResultId');
-
-let sentSuccessfully = document.querySelector(".sentSuccessfully");
+let sentSuccessfully = document.querySelector('.sentSuccessfully');
 let reservationTimeStatus = false;
 let reservationDateStatus = false;
 let idStatus = false;
 
 
-for(let z = 0 ; z < tableId.length; z ++){
+for(let z = 0 ; z < hoursId.length; z ++){
 
-tableId[z].addEventListener("click", function() 
+hoursId[z].addEventListener("click", function() 
 {
 
-  reservationResultId.innerHTML =  tableId[z].textContent;
+  reservationResultId.innerHTML =  hoursId[z].textContent;
   sentSuccessfully.innerHTML = "";
   idStatus = true;
  });
@@ -414,18 +411,22 @@ reservationDate[l].addEventListener("click", function()
  });
 }
 
+
+
 for(let i = 0 ; i < reservationTime.length; i ++)
 {
 
 reservationTime[i].addEventListener("click", function() 
 {
 
-  sentSuccessfully.innerHTML = "";
- reservationTimeStatus = true;
+sentSuccessfully.innerHTML = "";
+reservationTimeStatus = true;
 
- reservationResultHours.innerHTML =  reservationTime[i].textContent;
+ reservationResultHours.innerHTML = reservationTime[i].textContent;
+
  });
 }
+
 let phone = document.getElementsByName('phone')[0];
 let firstNameAndLastName = document.getElementsByName('firstNameAndLastName')[0];
 
@@ -434,14 +435,16 @@ submit.addEventListener('click', function(event)
 {
 
 
-  if(reservationTimeStatus && idStatus && reservationDateStatus)
+
+  if(reservationTimeStatus && idStatus && reservationDateStatus &&  reservationResultHours.innerHTML == "8:00")
   {
     
       reservationsData = 
     {
+    id: "1",
     firstNameAndLastName: firstNameAndLastName.value,
     phone: phone.value,
-    reservationTime: reservationResultHours.textContent
+   
         
     };
 
@@ -464,7 +467,941 @@ sentSuccessfully.innerHTML = "Zamówienie wysłane";
 
 
 }
-else if(reservationTimeStatus &&idStatus && !reservationDateStatus)
+ else if (reservationTimeStatus && idStatus && reservationDateStatus &&  reservationResultHours.innerHTML == "8:30")
+  {
+    
+      reservationsData = 
+    {
+    id: "2",
+    firstNameAndLastName: firstNameAndLastName.value,
+    phone: phone.value,
+   
+        
+    };
+
+    let formData =  new FormData();
+
+    for(let key in reservationsData )
+    {
+        formData.append(key, reservationsData[key]);
+    }
+
+    fetch('changeOfReservation.php',
+    {
+method:'POST',
+body: formData
+    })
+.then(response => response.text())
+event.preventDefault(); 
+submit.style.display = "none";
+sentSuccessfully.innerHTML = "Zamówienie wysłane";
+
+
+}
+
+else if (reservationTimeStatus && idStatus && reservationDateStatus &&  reservationResultHours.innerHTML == "9:00")
+  {
+    
+      reservationsData = 
+    {
+    id: "3",
+    firstNameAndLastName: firstNameAndLastName.value,
+    phone: phone.value,
+   
+        
+    };
+
+    let formData =  new FormData();
+
+    for(let key in reservationsData )
+    {
+        formData.append(key, reservationsData[key]);
+    }
+
+    fetch('changeOfReservation.php',
+    {
+method:'POST',
+body: formData
+    })
+.then(response => response.text())
+event.preventDefault(); 
+submit.style.display = "none";
+sentSuccessfully.innerHTML = "Zamówienie wysłane";
+
+
+}
+else if (reservationTimeStatus && idStatus && reservationDateStatus &&  reservationResultHours.innerHTML == "9:30")
+  {
+    
+      reservationsData = 
+    {
+    id: "4",
+    firstNameAndLastName: firstNameAndLastName.value,
+    phone: phone.value,
+   
+        
+    };
+
+    let formData =  new FormData();
+
+    for(let key in reservationsData )
+    {
+        formData.append(key, reservationsData[key]);
+    }
+
+    fetch('changeOfReservation.php',
+    {
+method:'POST',
+body: formData
+    })
+.then(response => response.text())
+event.preventDefault(); 
+submit.style.display = "none";
+sentSuccessfully.innerHTML = "Zamówienie wysłane";
+
+
+}
+else if (reservationTimeStatus && idStatus && reservationDateStatus &&  reservationResultHours.innerHTML == "10:00")
+  {
+    
+      reservationsData = 
+    {
+    id: "5",
+    firstNameAndLastName: firstNameAndLastName.value,
+    phone: phone.value,
+   
+        
+    };
+
+    let formData =  new FormData();
+
+    for(let key in reservationsData )
+    {
+        formData.append(key, reservationsData[key]);
+    }
+
+    fetch('changeOfReservation.php',
+    {
+method:'POST',
+body: formData
+    })
+.then(response => response.text())
+event.preventDefault(); 
+submit.style.display = "none";
+sentSuccessfully.innerHTML = "Zamówienie wysłane";
+
+
+}
+
+else if (reservationTimeStatus && idStatus && reservationDateStatus &&  reservationResultHours.innerHTML == "10:30")
+  {
+    
+      reservationsData = 
+    {
+    id: "6",
+    firstNameAndLastName: firstNameAndLastName.value,
+    phone: phone.value,
+   
+        
+    };
+    
+
+    let formData =  new FormData();
+
+    for(let key in reservationsData )
+    {
+        formData.append(key, reservationsData[key]);
+    }
+
+    fetch('changeOfReservation.php',
+    {
+method:'POST',
+body: formData
+    })
+.then(response => response.text())
+event.preventDefault(); 
+submit.style.display = "none";
+sentSuccessfully.innerHTML = "Zamówienie wysłane";
+
+
+}
+else if (reservationTimeStatus && idStatus && reservationDateStatus &&  reservationResultHours.innerHTML == "11:00")
+  {
+    
+      reservationsData = 
+    {
+    id: "7",
+    firstNameAndLastName: firstNameAndLastName.value,
+    phone: phone.value,
+   
+        
+    };
+
+    let formData =  new FormData();
+
+    for(let key in reservationsData )
+    {
+        formData.append(key, reservationsData[key]);
+    }
+
+    fetch('changeOfReservation.php',
+    {
+method:'POST',
+body: formData
+    })
+.then(response => response.text())
+event.preventDefault(); 
+submit.style.display = "none";
+sentSuccessfully.innerHTML = "Zamówienie wysłane";
+
+
+}
+else if (reservationTimeStatus && idStatus && reservationDateStatus &&  reservationResultHours.innerHTML == "11:30")
+  {
+    
+      reservationsData = 
+    {
+    id: "8",
+    firstNameAndLastName: firstNameAndLastName.value,
+    phone: phone.value,
+   
+        
+    };
+
+    let formData =  new FormData();
+
+    for(let key in reservationsData )
+    {
+        formData.append(key, reservationsData[key]);
+    }
+
+    fetch('changeOfReservation.php',
+    {
+method:'POST',
+body: formData
+    })
+.then(response => response.text())
+event.preventDefault(); 
+submit.style.display = "none";
+sentSuccessfully.innerHTML = "Zamówienie wysłane";
+
+
+}
+else if (reservationTimeStatus && idStatus && reservationDateStatus &&  reservationResultHours.innerHTML == "12:00")
+  {
+    
+      reservationsData = 
+    {
+    id: "9",
+    firstNameAndLastName: firstNameAndLastName.value,
+    phone: phone.value,
+   
+        
+    };
+
+    let formData =  new FormData();
+
+    for(let key in reservationsData )
+    {
+        formData.append(key, reservationsData[key]);
+    }
+
+    fetch('changeOfReservation.php',
+    {
+method:'POST',
+body: formData
+    })
+.then(response => response.text())
+event.preventDefault(); 
+submit.style.display = "none";
+sentSuccessfully.innerHTML = "Zamówienie wysłane";
+
+
+}
+else if (reservationTimeStatus && idStatus && reservationDateStatus &&  reservationResultHours.innerHTML == "12:30")
+  {
+    
+      reservationsData = 
+    {
+    id: "10",
+    firstNameAndLastName: firstNameAndLastName.value,
+    phone: phone.value,
+   
+        
+    };
+
+    let formData =  new FormData();
+
+    for(let key in reservationsData )
+    {
+        formData.append(key, reservationsData[key]);
+    }
+
+    fetch('changeOfReservation.php',
+    {
+method:'POST',
+body: formData
+    })
+.then(response => response.text())
+event.preventDefault(); 
+submit.style.display = "none";
+sentSuccessfully.innerHTML = "Zamówienie wysłane";
+
+
+}
+else if (reservationTimeStatus && idStatus && reservationDateStatus &&  reservationResultHours.innerHTML == "13:00")
+  {
+    
+      reservationsData = 
+    {
+    id: "11",
+    firstNameAndLastName: firstNameAndLastName.value,
+    phone: phone.value,
+   
+        
+    };
+
+    let formData =  new FormData();
+
+    for(let key in reservationsData )
+    {
+        formData.append(key, reservationsData[key]);
+    }
+
+    fetch('changeOfReservation.php',
+    {
+method:'POST',
+body: formData
+    })
+.then(response => response.text())
+event.preventDefault(); 
+submit.style.display = "none";
+sentSuccessfully.innerHTML = "Zamówienie wysłane";
+
+
+}
+else if (reservationTimeStatus && idStatus && reservationDateStatus &&  reservationResultHours.innerHTML == "13:30")
+  {
+    
+      reservationsData = 
+    {
+    id: "12",
+    firstNameAndLastName: firstNameAndLastName.value,
+    phone: phone.value,
+   
+        
+    };
+
+    let formData =  new FormData();
+
+    for(let key in reservationsData )
+    {
+        formData.append(key, reservationsData[key]);
+    }
+
+    fetch('changeOfReservation.php',
+    {
+method:'POST',
+body: formData
+    })
+.then(response => response.text())
+event.preventDefault(); 
+submit.style.display = "none";
+sentSuccessfully.innerHTML = "Zamówienie wysłane";
+
+
+}
+else if (reservationTimeStatus && idStatus && reservationDateStatus &&  reservationResultHours.innerHTML == "14:00")
+  {
+    
+      reservationsData = 
+    {
+    id: "13",
+    firstNameAndLastName: firstNameAndLastName.value,
+    phone: phone.value,
+   
+        
+    };
+
+    let formData =  new FormData();
+
+    for(let key in reservationsData )
+    {
+        formData.append(key, reservationsData[key]);
+    }
+
+    fetch('changeOfReservation.php',
+    {
+method:'POST',
+body: formData
+    })
+.then(response => response.text())
+event.preventDefault(); 
+submit.style.display = "none";
+sentSuccessfully.innerHTML = "Zamówienie wysłane";
+
+
+}
+else if (reservationTimeStatus && idStatus && reservationDateStatus &&  reservationResultHours.innerHTML == "14:30")
+  {
+    
+      reservationsData = 
+    {
+    id: "14",
+    firstNameAndLastName: firstNameAndLastName.value,
+    phone: phone.value,
+   
+        
+    };
+
+    let formData =  new FormData();
+
+    for(let key in reservationsData )
+    {
+        formData.append(key, reservationsData[key]);
+    }
+
+    fetch('changeOfReservation.php',
+    {
+method:'POST',
+body: formData
+    })
+.then(response => response.text())
+event.preventDefault(); 
+submit.style.display = "none";
+sentSuccessfully.innerHTML = "Zamówienie wysłane";
+
+
+}
+
+else if (reservationTimeStatus && idStatus && reservationDateStatus &&  reservationResultHours.innerHTML == "15:00")
+  {
+    
+      reservationsData = 
+    {
+    id: "15",
+    firstNameAndLastName: firstNameAndLastName.value,
+    phone: phone.value,
+   
+        
+    };
+
+    let formData =  new FormData();
+
+    for(let key in reservationsData )
+    {
+        formData.append(key, reservationsData[key]);
+    }
+
+    fetch('changeOfReservation.php',
+    {
+method:'POST',
+body: formData
+    })
+.then(response => response.text())
+event.preventDefault(); 
+submit.style.display = "none";
+sentSuccessfully.innerHTML = "Zamówienie wysłane";
+
+
+}
+else if (reservationTimeStatus && idStatus && reservationDateStatus &&  reservationResultHours.innerHTML == "15:30")
+  {
+    
+      reservationsData = 
+    {
+    id: "16",
+    firstNameAndLastName: firstNameAndLastName.value,
+    phone: phone.value,
+   
+        
+    };
+
+    let formData =  new FormData();
+
+    for(let key in reservationsData )
+    {
+        formData.append(key, reservationsData[key]);
+    }
+
+    fetch('changeOfReservation.php',
+    {
+method:'POST',
+body: formData
+    })
+.then(response => response.text())
+event.preventDefault(); 
+submit.style.display = "none";
+sentSuccessfully.innerHTML = "Zamówienie wysłane";
+
+
+}
+else if (reservationTimeStatus && idStatus && reservationDateStatus &&  reservationResultHours.innerHTML == "16:00")
+  {
+    
+      reservationsData = 
+    {
+    id: "17",
+    firstNameAndLastName: firstNameAndLastName.value,
+    phone: phone.value,
+   
+        
+    };
+
+    let formData =  new FormData();
+
+    for(let key in reservationsData )
+    {
+        formData.append(key, reservationsData[key]);
+    }
+
+    fetch('changeOfReservation.php',
+    {
+method:'POST',
+body: formData
+    })
+.then(response => response.text())
+event.preventDefault(); 
+submit.style.display = "none";
+sentSuccessfully.innerHTML = "Zamówienie wysłane";
+
+
+}
+else if (reservationTimeStatus && idStatus && reservationDateStatus &&  reservationResultHours.innerHTML == "16:30")
+  {
+    
+      reservationsData = 
+    {
+    id: "18",
+    firstNameAndLastName: firstNameAndLastName.value,
+    phone: phone.value,
+   
+        
+    };
+
+    let formData =  new FormData();
+
+    for(let key in reservationsData )
+    {
+        formData.append(key, reservationsData[key]);
+    }
+
+    fetch('changeOfReservation.php',
+    {
+method:'POST',
+body: formData
+    })
+.then(response => response.text())
+event.preventDefault(); 
+submit.style.display = "none";
+sentSuccessfully.innerHTML = "Zamówienie wysłane";
+
+
+}
+else if (reservationTimeStatus && idStatus && reservationDateStatus &&  reservationResultHours.innerHTML == "17:00")
+  {
+    
+      reservationsData = 
+    {
+    id: "19",
+    firstNameAndLastName: firstNameAndLastName.value,
+    phone: phone.value,
+   
+        
+    };
+
+    let formData =  new FormData();
+
+    for(let key in reservationsData )
+    {
+        formData.append(key, reservationsData[key]);
+    }
+
+    fetch('changeOfReservation.php',
+    {
+method:'POST',
+body: formData
+    })
+.then(response => response.text())
+event.preventDefault(); 
+submit.style.display = "none";
+sentSuccessfully.innerHTML = "Zamówienie wysłane";
+
+
+}
+else if (reservationTimeStatus && idStatus && reservationDateStatus &&  reservationResultHours.innerHTML == "17:30")
+  {
+    
+      reservationsData = 
+    {
+    id: "20",
+    firstNameAndLastName: firstNameAndLastName.value,
+    phone: phone.value,
+   
+        
+    };
+
+    let formData =  new FormData();
+
+    for(let key in reservationsData )
+    {
+        formData.append(key, reservationsData[key]);
+    }
+
+    fetch('changeOfReservation.php',
+    {
+method:'POST',
+body: formData
+    })
+.then(response => response.text())
+event.preventDefault(); 
+submit.style.display = "none";
+sentSuccessfully.innerHTML = "Zamówienie wysłane";
+
+
+}
+else if (reservationTimeStatus && idStatus && reservationDateStatus &&  reservationResultHours.innerHTML == "18:00")
+  {
+    
+      reservationsData = 
+    {
+    id: "21",
+    firstNameAndLastName: firstNameAndLastName.value,
+    phone: phone.value,
+   
+        
+    };
+
+    let formData =  new FormData();
+
+    for(let key in reservationsData )
+    {
+        formData.append(key, reservationsData[key]);
+    }
+
+    fetch('changeOfReservation.php',
+    {
+method:'POST',
+body: formData
+    })
+.then(response => response.text())
+event.preventDefault(); 
+submit.style.display = "none";
+sentSuccessfully.innerHTML = "Zamówienie wysłane";
+
+
+}
+else if (reservationTimeStatus && idStatus && reservationDateStatus &&  reservationResultHours.innerHTML == "18:30")
+  {
+    
+      reservationsData = 
+    {
+    id: "22",
+    firstNameAndLastName: firstNameAndLastName.value,
+    phone: phone.value,
+   
+        
+    };
+
+    let formData =  new FormData();
+
+    for(let key in reservationsData )
+    {
+        formData.append(key, reservationsData[key]);
+    }
+
+    fetch('changeOfReservation.php',
+    {
+method:'POST',
+body: formData
+    })
+.then(response => response.text())
+event.preventDefault(); 
+submit.style.display = "none";
+sentSuccessfully.innerHTML = "Zamówienie wysłane";
+
+
+}
+else if (reservationTimeStatus && idStatus && reservationDateStatus &&  reservationResultHours.innerHTML == "19:00")
+  {
+    
+      reservationsData = 
+    {
+    id: "23",
+    firstNameAndLastName: firstNameAndLastName.value,
+    phone: phone.value,
+   
+        
+    };
+
+    let formData =  new FormData();
+
+    for(let key in reservationsData )
+    {
+        formData.append(key, reservationsData[key]);
+    }
+
+    fetch('changeOfReservation.php',
+    {
+method:'POST',
+body: formData
+    })
+.then(response => response.text())
+event.preventDefault(); 
+submit.style.display = "none";
+sentSuccessfully.innerHTML = "Zamówienie wysłane";
+
+
+}
+else if (reservationTimeStatus && idStatus && reservationDateStatus &&  reservationResultHours.innerHTML == "19:30")
+  {
+    
+      reservationsData = 
+    {
+    id: "24",
+    firstNameAndLastName: firstNameAndLastName.value,
+    phone: phone.value,
+   
+        
+    };
+
+    let formData =  new FormData();
+
+    for(let key in reservationsData )
+    {
+        formData.append(key, reservationsData[key]);
+    }
+
+    fetch('changeOfReservation.php',
+    {
+method:'POST',
+body: formData
+    })
+.then(response => response.text())
+event.preventDefault(); 
+submit.style.display = "none";
+sentSuccessfully.innerHTML = "Zamówienie wysłane";
+
+
+}
+else if (reservationTimeStatus && idStatus && reservationDateStatus &&  reservationResultHours.innerHTML == "20:00")
+  {
+    
+      reservationsData = 
+    {
+    id: "25",
+    firstNameAndLastName: firstNameAndLastName.value,
+    phone: phone.value,
+   
+        
+    };
+
+    let formData =  new FormData();
+
+    for(let key in reservationsData )
+    {
+        formData.append(key, reservationsData[key]);
+    }
+
+    fetch('changeOfReservation.php',
+    {
+method:'POST',
+body: formData
+    })
+.then(response => response.text())
+event.preventDefault(); 
+submit.style.display = "none";
+sentSuccessfully.innerHTML = "Zamówienie wysłane";
+
+
+}
+else if (reservationTimeStatus && idStatus && reservationDateStatus &&  reservationResultHours.innerHTML == "20:30")
+  {
+    
+      reservationsData = 
+    {
+    id: "26",
+    firstNameAndLastName: firstNameAndLastName.value,
+    phone: phone.value,
+   
+        
+    };
+
+    let formData =  new FormData();
+
+    for(let key in reservationsData )
+    {
+        formData.append(key, reservationsData[key]);
+    }
+
+    fetch('changeOfReservation.php',
+    {
+method:'POST',
+body: formData
+    })
+.then(response => response.text())
+event.preventDefault(); 
+submit.style.display = "none";
+sentSuccessfully.innerHTML = "Zamówienie wysłane";
+
+
+}
+else if (reservationTimeStatus && idStatus && reservationDateStatus &&  reservationResultHours.innerHTML == "21:00")
+  {
+    
+      reservationsData = 
+    {
+    id: "27",
+    firstNameAndLastName: firstNameAndLastName.value,
+    phone: phone.value,
+   
+        
+    };
+
+    let formData =  new FormData();
+
+    for(let key in reservationsData )
+    {
+        formData.append(key, reservationsData[key]);
+    }
+
+    fetch('changeOfReservation.php',
+    {
+method:'POST',
+body: formData
+    })
+.then(response => response.text())
+event.preventDefault(); 
+submit.style.display = "none";
+sentSuccessfully.innerHTML = "Zamówienie wysłane";
+
+
+}
+else if (reservationTimeStatus && idStatus && reservationDateStatus &&  reservationResultHours.innerHTML == "21:30")
+  {
+    
+      reservationsData = 
+    {
+    id: "28",
+    firstNameAndLastName: firstNameAndLastName.value,
+    phone: phone.value,
+   
+        
+    };
+
+    let formData =  new FormData();
+
+    for(let key in reservationsData )
+    {
+        formData.append(key, reservationsData[key]);
+    }
+
+    fetch('changeOfReservation.php',
+    {
+method:'POST',
+body: formData
+    })
+.then(response => response.text())
+event.preventDefault(); 
+submit.style.display = "none";
+sentSuccessfully.innerHTML = "Zamówienie wysłane";
+
+
+}
+else if (reservationTimeStatus && idStatus && reservationDateStatus &&  reservationResultHours.innerHTML == "22:00")
+  {
+    
+      reservationsData = 
+    {
+    id: "29",
+    firstNameAndLastName: firstNameAndLastName.value,
+    phone: phone.value,
+   
+        
+    };
+
+    let formData =  new FormData();
+
+    for(let key in reservationsData )
+    {
+        formData.append(key, reservationsData[key]);
+    }
+
+    fetch('changeOfReservation.php',
+    {
+method:'POST',
+body: formData
+    })
+.then(response => response.text())
+event.preventDefault(); 
+submit.style.display = "none";
+sentSuccessfully.innerHTML = "Zamówienie wysłane";
+
+
+}
+else if (reservationTimeStatus && idStatus && reservationDateStatus &&  reservationResultHours.innerHTML == "22:30")
+  {
+    
+      reservationsData = 
+    {
+    id: "30",
+    firstNameAndLastName: firstNameAndLastName.value,
+    phone: phone.value,
+   
+        
+    };
+
+    let formData =  new FormData();
+
+    for(let key in reservationsData )
+    {
+        formData.append(key, reservationsData[key]);
+    }
+
+    fetch('changeOfReservation.php',
+    {
+method:'POST',
+body: formData
+    })
+.then(response => response.text())
+event.preventDefault(); 
+submit.style.display = "none";
+sentSuccessfully.innerHTML = "Zamówienie wysłane";
+
+
+}
+else if (reservationTimeStatus && idStatus && reservationDateStatus &&  reservationResultHours.innerHTML == "23:00")
+  {
+    
+      reservationsData = 
+    {
+    id: "31",
+    firstNameAndLastName: firstNameAndLastName.value,
+    phone: phone.value,
+   
+        
+    };
+
+    let formData =  new FormData();
+
+    for(let key in reservationsData )
+    {
+        formData.append(key, reservationsData[key]);
+    }
+
+    fetch('changeOfReservation.php',
+    {
+method:'POST',
+body: formData
+    })
+.then(response => response.text())
+event.preventDefault(); 
+submit.style.display = "none";
+sentSuccessfully.innerHTML = "Zamówienie wysłane";
+}
+
+
+else if(reservationTimeStatus && idStatus && !reservationDateStatus)
   {
 
     sentSuccessfully.innerHTML = "Wybierz datę";
@@ -495,22 +1432,24 @@ else if( !reservationTimeStatus &&idStatus && reservationDateStatus)
 });
 handleReservationClickOne = () => {
 let reservationDates = document.querySelectorAll(".reservationDate"); 
-let tableIds = document.querySelectorAll(".tableId"); 
+let tableIds = document.querySelectorAll(".hoursId"); 
 let reservationTimes = document.querySelectorAll(".reservationTime"); 
-
 reservationDates.forEach((reservationDate, l) => {
-tableIds.forEach((tableId, x) => {
+tableIds.forEach((hoursId, x) => {
 reservationTimes.forEach((reservationTime, y) => {
 
 
 
-  tableId.addEventListener('click', function(){
-    
+  hoursId.addEventListener('click', function(){
+
     reservationTime.style.color = "green";
-    let reservationTimesRes = reservations.filter(reservations =>  reservations.status == 'Zajety' && reservations.tableId == 1 &&
-reservations.reservationDate == 1);
-let reservationTimesResOne = reservations.filter(reservations =>  reservations.status == 'Zajety' && reservations.tableId == 1 &&
+    let reservationTimesRes = reservations.filter(reservations =>  reservations.status == 'Zajety' && reservations.hoursId == 1 &&
+reservations.reservationDate == 1 );
+let reservationTimesResOne = reservations.filter(reservations =>  reservations.status == 'Zajety' && reservations.hoursId == 1 &&
 reservations.reservationDate == 2);
+let reservationTimesResTwo = reservations.filter(reservations =>  reservations.status == 'Zajety' && reservations.hoursId == 1 &&
+reservations.reservationDate == 3);
+
 
 if(reservationTimesResOne.length > 0)
 {
@@ -537,14 +1476,7 @@ if(reservationTimesResOne.length > 0)
 }
 
 
-if(reservationResultData.textContent == 1 ||reservationResultData.textContent == 2){
-document.querySelector('.containerMain').style.display = 'block';
-}
 
-else
-{
-  sentSuccessfully.innerHTML = "Wybierz date";
-}
 if(reservationTimesRes.length > 0)
 {
  
@@ -570,10 +1502,34 @@ if(reservationTimesRes.length > 0)
 }
 
 
-if(reservationResultData.textContent == 1 ){
-document.querySelector('.containerMain').style.display = 'block';
+if(reservationTimesResTwo.length > 0)
+{
+ 
+  reservationTimesResTwo.forEach(reservationTimesResTwo =>
+  {
+    let reservationTimesResTwoAll = JSON.stringify(reservationTimesResTwo.reservationTime);
+   
+    if(reservationTimesResTwoAll.slice(1, 5) == reservationTime.textContent && reservationResultData.textContent == 3 && reservationResultId.textContent == 1 )
+    {
+  
+      reservationTime.style.color = "red";
+    }
+
+ 
+  
+
+    else if(reservationTimesResTwoAll.slice(1, 6) == reservationTime.textContent && reservationResultData.textContent == 3 && reservationResultId.textContent == 1)
+    {
+      reservationTime.style.color = "red";
+    }
+  });
+  
 }
 
+
+if(reservationResultData.textContent == 1 ||reservationResultData.textContent == 2 || reservationResultData.textContent == 3 ){
+document.querySelector('.containerMain').style.display = 'block';
+}
 else
 {
   sentSuccessfully.innerHTML = "Wybierz date";
@@ -582,8 +1538,8 @@ else
 });
 });
 });
-
 }
+
 handleReservationClickOne();
 
 
