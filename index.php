@@ -4,23 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Table reservation</title>
-    <script scr="js/script.js" async></script>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+
+
 </head>
 <body>
 <form method="post" action="">
-<label form="table_number">Number table</label>
-<input type="number" id="table_number" name="table_number">
+<label form="table_number">Number table</label >
+<input type="number" id="table_number" name="table_number" >
 
 <label form="reservation_date">Date</label>
-<input type="date" id="reservation_date" name="reservation_date">
+<input type="date" id="reservation_date" name="reservation_date" >
 
 <label form="reservation_time">Time</label>
-<input type="time" id="reservation_time" name="reservation_time">
+<input type="time" id="reservation_time" name="reservation_time" >
 
 <button type="submit" id="submit">Submit</button>
 
 </form>
+<div class="textStatus"></div>
+<script src="js/script.js" async></script>
+<!-- email  connect start -->
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+<!-- email  connect end -->
+<style>
+    form
+{
+position: relative;
+text-align: center;
+border: 1px solid black;
+left: 50%;
+transform: translateX(-50%);
+margin-top: 10%;
+width: 30%;
+
+}
+
+input, button
+{
+    position: relative;
+    display: flex;
+    text-align: center ;
+    left: 50%;
+        transform: translateX(-50%);
+        margin: 5px 0;
+    max-width: 98%;
+     font-size:9px
+}
+
+</style>
 <?php
 // Include the configuration file which likely contains database connection settings and functions
 require_once'configFunction.php';
